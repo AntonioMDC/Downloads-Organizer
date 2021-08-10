@@ -3,13 +3,13 @@ import shutil
 import CONSTANTS
 
 
-downloads_folder = os.path.join(os.path.expanduser('~'), 'Downloads')
+DOWNLOADS_FOLDER = os.path.join(os.path.expanduser('~'), 'Downloads')
 
 
 def create_folders():
     for folder_name in CONSTANTS.FILE_TYPE:
-        if not os.path.isdir(os.path.join(downloads_folder, folder_name)):
-            os.makedirs(os.path.join(downloads_folder, folder_name))
+        if not os.path.isdir(os.path.join(DOWNLOADS_FOLDER, folder_name)):
+            os.makedirs(os.path.join(DOWNLOADS_FOLDER, folder_name))
 
 
 def search_type(extension):
@@ -23,11 +23,11 @@ def search_type(extension):
 
 def move_files():
     duplicates = False
-    for filename in os.listdir(downloads_folder):
+    for filename in os.listdir(DOWNLOADS_FOLDER):
         folder_name, known_extension= search_type(os.path.splitext(filename)[1])
         if known_extension: 
             try:
-                shutil.move(os.path.join(downloads_folder,filename), os.path.join(downloads_folder, folder_name))
+                shutil.move(os.path.join(DOWNLOADS_FOLDER,filename), os.path.join(DOWNLOADS_FOLDER, folder_name))
             except:
                 duplicates = True
 
